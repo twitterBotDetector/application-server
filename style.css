@@ -1,0 +1,47 @@
+*{
+	box-sizing: border-box;
+}
+/*JUMBOTRON */
+.jumbotron{
+	clear: both;
+	padding-bottom: 0px;
+	padding-top: 32px;
+	background: #34e89e; /* fallback for old browsers*/
+	background: -webkit-linear-gradient(to right, #34e89e, #0f3443);/* Chrome 10-25 */
+	background: linear-gradient(to right, #34e89e, #0f3443);/*IE10+, cHROME26+, Firefox16+*/
+}
+.welcome-header{
+    color:#0f3443;
+    text-shadow: 4px 4px 5px hsla(120,100%,50%,0.3);
+    font-family:'Rokkitt', serif;
+}
+img{
+	width: 30%;
+	float: right;
+}
+.jumbotron .btn-group {
+	padding-bottom: 1.5em;
+}
+
+/*Detect Preference*/
+.preference-search{
+	font-family:'Rokkitt', serif;
+	text-align: center;
+}
+.btn-info{
+	padding-right: 1.2em;
+}
+.tweeter-user-id{
+	padding-left: 3em;
+}
+.tweeter-tags{
+	padding-left: 3em;
+}
+.form-tags{
+	float: right;
+	padding-right: 2.3em;
+}
+.form-control{
+	padding-right: 8em;
+	margin-right: .1em;
+}
