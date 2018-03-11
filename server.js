@@ -5,6 +5,8 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/views'));
 
+require('./login')(app)
+
 //index page
 app.get('/', function(request, response) {
   response.render('index');
