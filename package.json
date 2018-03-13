@@ -18,8 +18,16 @@
   },
   "homepage": "https://github.com/twitterBotDetector/UI#readme",
   "dependencies": {
+    "connect-mongo": "^2.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+<<<<<<< HEAD
     "twit": "^2.2.9"
+=======
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.9",
+    "passport": "^0.4.0",
+    "passport-twitter": "^1.0.4"
+>>>>>>> 510000ac4cdf02fecd52f8313557bf8b0e836b8e
   }
 }
