@@ -41,6 +41,9 @@ var login = require('./login.js')
 login.twitterAuth(app);
 login.authCallback(app);
 
+var fetchTweets = require('./fetchTweets');
+fetchTweets.fetchTweets(app);
+
 //index page
 app.get('/', function(request, response) {
     response.render('index');
