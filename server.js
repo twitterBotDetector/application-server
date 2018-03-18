@@ -45,8 +45,15 @@ var fetchTweets = require('./fetchTweets');
 fetchTweets.fetchTweets(app);
 
 //index page
-app.get('/', function(request, response) {
-    response.render('index');
+app.get('/', (request, response) => {
+       if(request.user != null){
+      response.render('index.ejs',{
+        userName: request.user.userName
+      });
+  }
+  else{
+    response.render('index',{userName:''});
+  } 
 });
   
 var server_port = process.env.PORT || 8085;

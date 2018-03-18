@@ -1,3 +1,5 @@
+link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300")
+
 *{
 	box-sizing: border-box;
 }
@@ -16,7 +18,7 @@
     font-family:'Rokkitt', serif;
 }
 img{
-	width: 30%;
+	width: 40%;
 	float: right;
 }
 .jumbotron .btn-group {

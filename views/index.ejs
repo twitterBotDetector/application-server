@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,23 +10,23 @@
 	<title>TweeBotD</title>
     <link rel="shortcut icon" href="icon.ico" />
     <link href="https://fonts.googleapis.com/css?family=Rokkitt:300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-
 <body>
 	<div class="container-fluid" id="header">
 		<div class="jumbotron row">
 		  <div class="col-6">
 			<h1 class="welcome-header">Welcome to TweeBotD</h1>
 			<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
+
 			<div class="btn-group">
 		      <a class='btn' style="background-color: #00aced"><i class="fa fa-twitter" style="width:2px; height:20px;color:#ffffff"></i></a>
-		      <a class='btn' href='https://tweebotui.herokuapp.com/auth/twitter' style="width:10em;background-color:#00aced;color:#ffffff"> Sign in with Twitter</a>
+		      <a class='btn' href='https://tweebotui.herokuapp.com/auth/twitter' style="width:20em;background-color:#00aced;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
 	        </div>
+
 	       </div>    
 	       <div class="col-6">
 			 <img src="icon.png" alt="Bot Image">
@@ -40,10 +40,12 @@
 
       <!--Detection of Bots Using User_Id -->
 	  <div class="col-12 col-md-6 tweeter-user-id">
+
 		<form class="form-inline" method="post" action="https://tweebotd.herokuapp.com/extractUserData/">
          <input type="text" class="form-control" name="UserId" placeholder="UserId">
          <button type="submit" class="btn btn-info"><i class="fa fa-search" aris-hidden="true" style="padding-right: 9%;"></i>Search</button>
         </form>
+
 	  </div><br>
       
       <!--Detection of Bots Using Tags -->
@@ -127,5 +129,6 @@
       </div> <!----End of Col-->
 
 	</div><!----End of Row-->
+
 </body>
 </html>
