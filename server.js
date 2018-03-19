@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 var passport = require('passport'),
   TwitterStrategy = require('passport-twitter').Strategy;
 
@@ -43,6 +45,9 @@ login.authCallback(app);
 
 var fetchTweets = require('./fetchTweets');
 fetchTweets.fetchTweets(app);
+
+var extractData = require('./extractUserData');
+extractData.extractUserData(app, bodyParser);
 
 var logout = require('./logout');
 logout.logoutUser(app);
