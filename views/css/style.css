@@ -64,7 +64,6 @@ background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, F
 
 .hidden{ display: none; }
 #signIn{ background-color:#00aced; }
-.red-logout { background-color: red; }
 
 hr{ margin: 0px; }
 
