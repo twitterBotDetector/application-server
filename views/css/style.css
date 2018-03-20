@@ -18,7 +18,8 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300
     font-family:'Rokkitt', serif;
 }
 img{
-	width: 40%;
+	max-width: 40%;
+	height: auto;
 	float: right;
 }
 .jumbotron .btn-group {
@@ -61,6 +62,10 @@ background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, F
 	margin-top: 35px;
 }
 
+.hidden{ display: none; }
+
 hr{ margin: 0px; }
 
 .card{ border: 0px; margin-left: 10%; }
+.card-body{ padding-top: 10px; padding-bottom: 10px;}
+#verify{ display: inline; float: right;}

@@ -1,15 +1,17 @@
 var express = require('express');
 var app = express();
-var passport = require('passport'), TwitterStrategy = require('passport-twitter').Strategy;
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+var passport = require('passport'),
+  TwitterStrategy = require('passport-twitter').Strategy;
 
 try {
   var config = require("./config");
-}
-catch (e) {
+} catch (e) {
   var config = {
-      "session_secret": process.env.session_secret,
-      "mongodb_url": process.env.mongodb_url
-  }     
+    "session_secret": process.env.session_secret,
+    "mongodb_url": process.env.mongodb_url
+  }
 }
 
 var session = require('express-session');
@@ -19,13 +21,13 @@ var MongoStore = require('connect-mongo')(session);
 mongoose.connect(config.mongodb_url);
 
 app.use(session({
-    secret: config.session_secret, 
-    resave: false, 
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      touchAfter: 24 * 3600 // time period in seconds
-    })
+  secret: config.session_secret,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    touchAfter: 24 * 3600 // time period in seconds
+  })
 }));
 
 // Initialize Passport and restore authentication state, if any, from the
@@ -41,22 +43,36 @@ var login = require('./login.js')
 login.twitterAuth(app);
 login.authCallback(app);
 
-var fetchTweets = require('./fetchTweets');
+var fetchTweets = require('./fetchTweets.js');
 fetchTweets.fetchTweets(app);
+
+<<<<<<< HEAD
+=======
+var extractData = require('./extractUserData');
+extractData.extractUserData(app, bodyParser);
+
+var logout = require('./logout');
+logout.logoutUser(app);
+>>>>>>> bda1aac9f18ddf1e3e309b2555a1cea9dd3be23f
 
 //index page
 app.get('/', (request, response) => {
-       if(request.user != null){
-      response.render('index.ejs',{
-        userName: request.user.userName
-      });
+  if (request.user != null) {
+    response.render('index.ejs', {
+      userName: request.user.userName
+    });
+  } else {
+    response.render('index', {
+      userName: ''
+    });
   }
-  else{
-    response.render('index',{userName:''});
-  } 
 });
+
+<<<<<<< HEAD
   
+=======
+>>>>>>> bda1aac9f18ddf1e3e309b2555a1cea9dd3be23f
 var server_port = process.env.PORT || 8085;
 app.listen(server_port, function () {
-    console.log( "Listening on " + server_port  );
-});    
+  console.log("Listening on " + server_port);
+});

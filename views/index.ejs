@@ -24,7 +24,7 @@
 
 			<div class="btn-group">
 		      <a class='btn' style="background-color: #00aced"><i class="fa fa-twitter" style="width:2px; height:20px;color:#ffffff"></i></a>
-		      <a class='btn' href='https://tweebotui.herokuapp.com/auth/twitter' style="width:190%;background-color:#00aced;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
+		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter' style="width:190%;background-color:#00aced;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
 	        </div>
 
 	       </div>    
@@ -60,75 +60,67 @@
     <br><br><br>
 
     <!--Display User Tweets-->
-	<div class="row" id="tweetDisplay">
-	  <div class="col-md-4 col-12" >
-
-	    <div class="card w-75 border-light">
-	    	<h5 class="card-header"> Featured </h5>
-	    	<div class="view overlay">
-	    		<img class="card-img-top" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fboemeiersports.com%2Fwp-content%2Fuploads%2F2014%2F04%2Ftwitter_logo.png&f=1" alt="image in tweets">
-	    	</div>
-	    	<hr>
-	    	<div class="card-body">
-	    	  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	    	</div> 
-
-	    	<!-- Card footer -->
-            <div class="card-footer bg-transparent border-dark">
-             <ul class="list-unstyled list-inline font-small mt-3">
-              <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
-             </ul>
-            </div>
-           <!-- Card footer --> 
-
-	    </div><!----End of Card-->
-      </div>
-
-      <div class="col-md-4 col-12">
-	    <div class="card w-75 border-light">
-	    	<h5 class="card-header"> Featured </h5>
-	    	<div class="view overlay">
-	    		<img class="card-img-top" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fboemeiersports.com%2Fwp-content%2Fuploads%2F2014%2F04%2Ftwitter_logo.png&f=1" alt="image in tweets">
-	    	</div>
-	    	<hr>
-	    	<div class="card-body">
-	    	  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	    	</div> 
-
-	    	<!-- Card footer -->
-            <div class="card-footer bg-transparent border-dark">
-             <ul class="list-unstyled list-inline font-small mt-3">
-              <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
-             </ul>
-            </div>
-           <!-- Card footer --> 
-
-	    </div><!----End of Card--><br><br>
-      </div> <!----End of Col-->
-
-      <div class="col-md-4 col-12">
-	    <div class="card w-75 border-light">
-	    	<h5 class="card-header"> Featured </h5>
-	    	<div class="view overlay">
-	    		<img class="card-img-top" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fboemeiersports.com%2Fwp-content%2Fuploads%2F2014%2F04%2Ftwitter_logo.png&f=1" alt="image in tweets">
-	    	</div>
-	    	<hr>
-	    	<div class="card-body">
-	    	  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-	    	</div> 
-
-	    	<!-- Card footer -->
-            <div class="card-footer bg-transparent border-dark">
-             <ul class="list-unstyled list-inline font-small mt-3">
-              <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>05/10/2015</li>
-             </ul>
-            </div>
-           <!-- Card footer --> 
-
-	    </div><!----End of Card--><br><br>
-      </div> <!----End of Col-->
-
+	<div class="row hidden" id="tweetDisplay">
+	  
 	</div><!----End of Row-->
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+   
+   //SignIn Button
+    $('#signIn').addEventListener('click', =>{
+    	$(this).css('background-color','red');
+    });
+
+  	//Tweet Display
+  	$(document).ready(function(){
+  		$.ajax({
+  			url: "/api/fetchTweets",
+  			dataType: "json",
+  			success: function(data){
+  				console.log(data);
+  				if (data) {
+                  
+                  $('#tweetDisplay').removeClass("hidden");     
+            
+                 function showTweets(tweets){
+                   document.querySelector("#tweetDisplay").innerHTML += tweets;
+                 }
+                  data.map(getTweetDetails).forEach(showTweets);
+                 function getTweetDetails(data)
+                 {  
+                  return `<div class="col-md-4 col-12" >
+                   <div class="card w-75 border-light">
+                      <div class="card-header alert alert-success">
+                      <img src=${data.user.profile_image_url}></img>
+      	                <h5 class="alert-link">${data.user.name}</h5>
+                        <h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
+                        <p id="verify">Verification- <span class="badge badge-warning">${data.user.verified}</span></p>	
+                       </div>
+           
+	    	        <div class="card-body">
+	    	         <p class="card-text">${data.text}</p>
+	    	         <p class="card-text">TweetDevice - ${data.source}</p>
+	    	        </div> 
+
+	    	        <!-- Card footer -->
+                    <div class="card-footer bg-transparent border-dark">
+                      <ul class="list-unstyled list-inline font-small mt-3">
+                        <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>${data.created_at}</li>
+                      </ul>
+                    </div>
+	               </div>
+                  </div>`
+                 }
+                //$('.card-header').append(data[0].created_at);
+  				}//endIf
+  			}//endSuccess
+  		});
+  		
+  	});
+  </script>
 
 </body>
 </html>
