@@ -46,14 +46,11 @@ login.authCallback(app);
 var fetchTweets = require('./fetchTweets.js');
 fetchTweets.fetchTweets(app);
 
-<<<<<<< HEAD
-=======
 var extractData = require('./extractUserData');
 extractData.extractUserData(app, bodyParser);
 
 var logout = require('./logout');
 logout.logoutUser(app);
->>>>>>> bda1aac9f18ddf1e3e309b2555a1cea9dd3be23f
 
 //index page
 app.get('/', (request, response) => {
@@ -68,10 +65,6 @@ app.get('/', (request, response) => {
   }
 });
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> bda1aac9f18ddf1e3e309b2555a1cea9dd3be23f
 var server_port = process.env.PORT || 8085;
 app.listen(server_port, function () {
   console.log("Listening on " + server_port);
