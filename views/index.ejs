@@ -24,7 +24,7 @@
 
 			<div class="btn-group">
 		      <a class='btn' style="background-color: #00aced"><i class="fa fa-twitter" style="width:2px; height:20px;color:#ffffff"></i></a>
-		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter' style="width:190%;background-color:#00aced;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
+		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter' style="width:190%;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
 	        </div>
 
 	       </div>    
@@ -70,8 +70,8 @@
   <script type="text/javascript">
    
    //SignIn Button
-    $('#signIn').addEventListener('click', =>{
-    	$(this).css('background-color','red');
+    $('#signIn').on('click', function(){
+    	$(this).addClass("red-logout");
     });
 
   	//Tweet Display
