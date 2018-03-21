@@ -31,19 +31,19 @@ img{
 	font-family:'Rokkitt', serif;
 	text-align: center;
 }
+.form-inline{
+   display: inline;
+}
+#search-bot{
+	margin: 0px;
+}
+#userid-search, #search-tag{	
+	padding-right: 50px;
+}
 .btn-info{
 	padding-right: 1.2em;
 }
-.tweeter-user-id{
-	padding-left: 3em;
-}
-.tweeter-tags{
-	padding-left: 3em;
-}
-.form-tags{
-	float: right;
-	padding-right: 2.3em;
-}
+
 .form-control{
 	padding-right: 8em;
 	margin-right: .1em;

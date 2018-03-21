@@ -36,25 +36,19 @@
     
     <h2 class="preference-search"><strong>Bot Detection Preference</strong></h2>
     <br>
-	<section class="row">
+	<section class="row" id="search-bot">
 
       <!--Detection of Bots Using User_Id -->
-	  <div class="col-12 col-md-6 tweeter-user-id">
-
-		<form class="form-inline" method="post" action="https://tweebotd.herokuapp.com/extractUserData/">
-         <input type="text" class="form-control" name="UserId" placeholder="UserId">
-         <button type="submit" class="btn btn-info"><i class="fa fa-search" aris-hidden="true" style="padding-right: 9%;"></i>Search</button>
+		<form method="post" action="https://tweebotd.herokuapp.com/extractUserData/">
+		 <div class="row-fluid">
+		 	<div class="form-group mx-sm-3 mb-2">
+		 	 <div class="input-group">
+		 	   <input type="text" class="form-control" name="UserId" placeholder="UserId" id="userid-search">
+		       <button type="submit" class=" input-group-btn btn btn-info" style=" margin-left: 3px;"><i class="fa fa-search" aris-hidden="true" style="padding-right: 9%;"></i>Search</button>
+		 	 </div>
+		    </div>
+		 </div>
         </form>
-
-	  </div><br>
-      
-      <!--Detection of Bots Using Tags -->
-	  <div class="col-12 col-md-6 tweeter-tags">
-	    <form class="form-inline form-tags" method="post">
-		  <input type="text" class="form-control" name="tags" placeholder="Tags">
-		  <button type="submit" class="btn btn-info"><i class="fa fa-search" aris-hidden="true" style="padding-right: 9%;"></i>Search</button>
-		</form>
-	  </div>
 
 	</section>  	
     <br><br><br>
@@ -75,7 +69,7 @@
   			url: "/api/fetchTweets",
   			dataType: "json",
   			success: function(data){
-  				console.log(data);
+  				//console.log(data);
   				if (data) {
                   
                   $('#tweetDisplay').removeClass("hidden");     
@@ -89,7 +83,7 @@
                   return `<div class="col-md-4 col-12" >
                    <div class="card w-75 border-light">
                       <div class="card-header alert alert-success">
-                      <img src=${data.user.profile_image_url}></img>
+                      <img src=${data.user.profile_image_url_https}></img>
       	                <h5 class="alert-link">${data.user.name}</h5>
                         <h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
                         <p id="verify">Verification- <span class="badge badge-warning">${data.user.verified}</span></p>	
