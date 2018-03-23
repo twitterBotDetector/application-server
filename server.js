@@ -55,7 +55,7 @@ logout.logoutUser(app);
 
 //redirect http traffic to https if app is in production environment
 app.use(function(req, res, next) {
-  if(config.node_environment === 'production' && !req.secure) {
+  if(config.node_environment === 'production' && req.headers['x-forwarded-proto']!='https') {
     return res.redirect(['https://', req.get('Host'), req.url].join(''));
   }
   next();
