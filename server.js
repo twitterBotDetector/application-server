@@ -10,7 +10,8 @@ try {
 } catch (e) {
   var config = {
     "session_secret": process.env.session_secret,
-    "mongodb_url": process.env.mongodb_url
+    "mongodb_url": process.env.mongodb_url,
+    "node_environment": process.env.node_environment
   }
 }
 
@@ -51,6 +52,14 @@ extractData.extractUserData(app, bodyParser);
 
 var logout = require('./logout');
 logout.logoutUser(app);
+
+//redirect http traffic to https if app is in production environment
+app.use(function(req, res, next) {
+  if(config.node_environment === 'production' && !req.secure) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
 
 //index page
 app.get('/', (request, response) => {
