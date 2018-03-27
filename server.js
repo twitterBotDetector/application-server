@@ -24,6 +24,7 @@ var MongoStore = require('connect-mongo')(session);
 mongoose.connect(config.mongodb_url);
 
 app.use(session({
+  proxy: true,
   secret: config.session_secret,
   resave: false,
   saveUninitialized: false,
