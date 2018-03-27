@@ -27,6 +27,7 @@ app.use(session({
   secret: config.session_secret,
   resave: false,
   saveUninitialized: false,
+  cookie: { secure: true },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     touchAfter: 24 * 3600 // time period in seconds
