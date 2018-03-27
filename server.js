@@ -1,6 +1,8 @@
 var express = require('express');
+var compression = require('compression');
 var helmet = require('helmet');
 var app = express();
+app.use(compression());
 app.use(helmet());
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
