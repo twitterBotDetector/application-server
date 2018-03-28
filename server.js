@@ -1,7 +1,19 @@
 var express = require('express');
 var compression = require('compression');
-var helmet = require('helmet');
 var app = express();
+
+var helmet = require('helmet');
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com'],
+    fontSrc: ["'self'", 'fonts.googleapis.com'],
+    scriptSrc: ["'self'", 'ajax.googleapis.com'],
+    imgSrc: ["'self'", 'pbs.twimg.com'],
+    upgradeInsecureRequests: true
+  }
+}));
+
 app.use(compression());
 app.use(helmet());
 var bodyParser = require('body-parser');
