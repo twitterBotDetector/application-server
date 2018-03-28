@@ -10,7 +10,10 @@ app.use(helmet.contentSecurityPolicy({
     fontSrc: ["'self'", 'fonts.googleapis.com'],
     scriptSrc: ["'self'", 'ajax.googleapis.com'],
     imgSrc: ["'self'", 'pbs.twimg.com'],
-    upgradeInsecureRequests: true
+    upgradeInsecureRequests: true,
+    frameAncestors: ["'none'"],
+    defaultSrc: ["'none'"],
+    baseUri: ["'none'"]
   }
 }));
 
