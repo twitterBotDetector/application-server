@@ -25,6 +25,9 @@ img{
 .jumbotron .btn-group {
 	padding-bottom: 1.5em;
 }
+#twitb{ background-color: #00aced; }
+#twitbi{ width:2px; height:20px; color:#ffffff; }
+#signIn{ background-color:#00aced; width:190%;color:#ffffff; }
 
 /*Detect Preference*/
 .preference-search{
@@ -37,9 +40,11 @@ img{
 #search-bot{
 	margin: 0px;
 }
-#userid-search, #search-tag{	
+#userid-search{	
 	padding-right: 50px;
 }
+#searchB{margin-left: 3px;}
+#searchBi{padding-right: 9%;}
 .btn-info{
 	padding-right: 1.2em;
 }
@@ -63,7 +68,6 @@ background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, F
 }
 
 .hidden{ display: none; }
-#signIn{ background-color:#00aced; }
 
 hr{ margin: 0px; }
 

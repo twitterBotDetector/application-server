@@ -23,8 +23,8 @@
 			<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
 
 			<div class="btn-group">
-		      <a class='btn' style="background-color: #00aced"><i class="fa fa-twitter" style="width:2px; height:20px;color:#ffffff"></i></a>
-		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter' style="width:190%;color:#ffffff"> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
+		      <a class='btn' id="twitb"><i class="fa fa-twitter" id="twitbi"></i></a>
+		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter'> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
 	        </div>
 
 	       </div>    
@@ -39,12 +39,12 @@
 	<section class="row" id="search-bot">
 
       <!--Detection of Bots Using User_Id -->
-		<form method="post" action="https://tweebotd.herokuapp.com/extractUserData/">
+		<form method="post" action="https://tweebotd.herokuapp.com/api/extractUserData/">
 		 <div class="row-fluid">
 		 	<div class="form-group mx-sm-3 mb-2">
 		 	 <div class="input-group">
-		 	   <input type="text" class="form-control" name="UserId" placeholder="UserId" id="userid-search">
-		       <button type="submit" class=" input-group-btn btn btn-info" style=" margin-left: 3px;"><i class="fa fa-search" aris-hidden="true" style="padding-right: 9%;"></i>Search</button>
+		 	   <input type="text" class="form-control" name="userId" placeholder="UserId" id="userid-search">
+		       <button type="submit" class=" input-group-btn btn btn-info" id="searchB"><i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Search</button>
 		 	 </div>
 		    </div>
 		 </div>
@@ -61,54 +61,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-   
-  	//Tweet Display
-  	$(document).ready(function(){
-  		$.ajax({
-  			url: "/api/fetchTweets",
-  			dataType: "json",
-  			success: function(data){
-  				//console.log(data);
-  				if (data) {
-                  
-                  $('#tweetDisplay').removeClass("hidden");     
-            
-                 function showTweets(tweets){
-                   document.querySelector("#tweetDisplay").innerHTML += tweets;
-                 }
-                  data.map(getTweetDetails).forEach(showTweets);
-                 function getTweetDetails(data)
-                 {  
-                  return `<div class="col-md-4 col-12" >
-                   <div class="card w-75 border-light">
-                      <div class="card-header alert alert-success">
-                      <img src=${data.user.profile_image_url_https}></img>
-      	                <h5 class="alert-link">${data.user.name}</h5>
-                        <h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
-                        <p id="verify">Verification- <span class="badge badge-warning">${data.user.verified}</span></p>	
-                       </div>
-           
-	    	        <div class="card-body">
-	    	         <p class="card-text">${data.text}</p>
-	    	         <p class="card-text">TweetDevice - ${data.source}</p>
-	    	        </div> 
-
-	    	        <!-- Card footer -->
-                    <div class="card-footer bg-transparent border-dark">
-                      <ul class="list-unstyled list-inline font-small mt-3">
-                        <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>${data.created_at}</li>
-                      </ul>
-                    </div>
-	               </div>
-                  </div>`
-                 }
-                //$('.card-header').append(data[0].created_at);
-  				}//endIf
-  			}//endSuccess
-  		});
-  		
-  	});
+  <script  src="takeTweet.js" type="text/javascript">
   </script>
 
 </body>

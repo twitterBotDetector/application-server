@@ -1,26 +1,46 @@
-//Import Twit Package
-var Twit = require('twit');
+	//Tweet Display
+  	$(document).ready(function(){
+  		$.ajax({
+  			url: "/api/fetchTweets",
+  			dataType: "json",
+  			success: function(data){
+  				//console.log(data);
+  				if (data) {
+                  
+                  $('#tweetDisplay').removeClass("hidden");     
+            
+                 function showTweets(tweets){
+                   document.querySelector("#tweetDisplay").innerHTML += tweets;
+                 }
+                  data.map(getTweetDetails).forEach(showTweets);
+                 function getTweetDetails(data)
+                 {  
+                  return `<div class="col-md-4 col-12" >
+                   <div class="card w-75 border-light">
+                      <div class="card-header alert alert-success">
+                      <img src=${data.user.profile_image_url_https}></img>
+      	                <h5 class="alert-link">${data.user.name}</h5>
+                        <h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
+                        <p id="verify">Verified User : <span class="badge badge-warning" style="text-transform:capitalize;">${data.user.verified}</span></p>	
+                       </div>
+           
+	    	        <div class="card-body">
+	    	         <p class="card-text">${data.text}</p>
+	    	         <p class="card-text">TweetDevice - ${data.source}</p>
+	    	        </div> 
 
-//Import Config File
-var config = require('/config');
-
-//object of twit to call functions inside it
-var tweeB = new Twit(config);
-
-var total = 2
-
-var params = {
-	  q: 'from:gandhivivek96' , count: 2
-}
-
-T.get('search/tweets', params, searchedData);
-
-function searchedData(err, data, response) {
-  for(var i =0; i<total; i++){
-      
-    console.log("Time " + data.statuses[i].tweet.created_at);
-    console.log("Name " + data.statuses[i].tweet.user.name);
-	console.log("Tweet " + data.statuses[i].tweet.text);
-  }	
-  
-}
+	    	        <!-- Card footer -->
+                    <div class="card-footer bg-transparent border-dark">
+                      <ul class="list-unstyled list-inline font-small mt-3">
+                        <li class="list-inline-item pr-2 white-text"><i class="fa fa-clock-o pr-1"></i>${data.created_at}</li>
+                      </ul>
+                    </div>
+	               </div>
+                  </div>`
+                 }
+                //$('.card-header').append(data[0].created_at);
+  				}//endIf
+  			}//endSuccess
+  		});
+  		
+  	});
