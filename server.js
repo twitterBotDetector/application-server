@@ -17,6 +17,8 @@ app.use(helmet.contentSecurityPolicy({
   }
 }));
 
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }))
+
 app.use(compression());
 app.use(helmet());
 var bodyParser = require('body-parser');
