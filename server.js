@@ -1,5 +1,23 @@
 var express = require('express');
+var compression = require('compression');
 var app = express();
+
+var helmet = require('helmet');
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
+    fontSrc: ["'self'", 'fonts.gstatic.com', 'maxcdn.bootstrapcdn.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'ajax.googleapis.com'],
+    imgSrc: ["'self'", 'pbs.twimg.com'],
+    upgradeInsecureRequests: true,
+    frameAncestors: ["'none'"],
+    baseUri: ["'none'"]
+  }
+}));
+
+app.use(compression());
+app.use(helmet());
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 var passport = require('passport'),
@@ -10,7 +28,8 @@ try {
 } catch (e) {
   var config = {
     "session_secret": process.env.session_secret,
-    "mongodb_url": process.env.mongodb_url
+    "mongodb_url": process.env.mongodb_url,
+    "node_environment": process.env.node_environment
   }
 }
 
@@ -21,9 +40,11 @@ var MongoStore = require('connect-mongo')(session);
 mongoose.connect(config.mongodb_url);
 
 app.use(session({
+  proxy: true,
   secret: config.session_secret,
   resave: false,
   saveUninitialized: false,
+  cookie: { secure: true },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     touchAfter: 24 * 3600 // time period in seconds
@@ -51,6 +72,14 @@ extractData.extractUserData(app, bodyParser);
 
 var logout = require('./logout');
 logout.logoutUser(app);
+
+//redirect http traffic to https if app is in production environment
+app.use(function(req, res, next) {
+  if(config.node_environment === 'production' && req.headers['x-forwarded-proto']!='https') {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
 
 //index page
 app.get('/', (request, response) => {
