@@ -9,10 +9,11 @@ app.use(helmet.contentSecurityPolicy({
     connectSrc: ["'self'"],
     styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
     fontSrc: ["'self'", 'fonts.gstatic.com', 'maxcdn.bootstrapcdn.com'],
-    scriptSrc: ["'self'", 'ajax.googleapis.com'],
+    scriptSrc: ["'self'", "'strict-dynamic", 'ajax.googleapis.com'],
     imgSrc: ["'self'", 'pbs.twimg.com'],
     frameAncestors: ["'none'"],
-    baseUri: ["'none'"]
+    baseUri: ["'none'"],
+    formAction: ["'self'"]
   }
 }));
 
