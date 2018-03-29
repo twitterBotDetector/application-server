@@ -9,7 +9,7 @@ app.use(helmet.contentSecurityPolicy({
     connectSrc: ["'self'"],
     styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
     fontSrc: ["'self'", 'fonts.gstatic.com', 'maxcdn.bootstrapcdn.com'],
-    scriptSrc: ["'self'", "'strict-dynamic'"],
+    scriptSrc: ["'self'"],
     imgSrc: ["'self'", 'pbs.twimg.com'],
     frameAncestors: ["'none'"],
     baseUri: ["'none'"],
