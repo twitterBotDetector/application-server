@@ -15,7 +15,7 @@
                   data.map(getTweetDetails).forEach(showTweets);
                  function getTweetDetails(data)
                  {  
-                  return `<div class="col-md-4 col-12" >
+                  return `<div class="col-md-4 col-12">
                    <div class="card w-75 border-light">
                       <div class="card-header alert alert-success">
                       <img src=${data.user.profile_image_url_https}></img>

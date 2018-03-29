@@ -5,16 +5,19 @@ var app = express();
 var helmet = require('helmet');
 app.use(helmet.contentSecurityPolicy({
   directives: {
-    defaultSrc: ["'self'"],
-    styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
+    defaultSrc: ["'none'"],
+    connectSrc: ["'self'"],
+    styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
     fontSrc: ["'self'", 'fonts.gstatic.com', 'maxcdn.bootstrapcdn.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'", 'ajax.googleapis.com'],
+    scriptSrc: ["'self'"],
     imgSrc: ["'self'", 'pbs.twimg.com'],
-    upgradeInsecureRequests: true,
     frameAncestors: ["'none'"],
-    baseUri: ["'none'"]
+    baseUri: ["'none'"],
+    formAction: ["'self'"]
   }
 }));
+
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }))
 
 app.use(compression());
 app.use(helmet());
