@@ -42,17 +42,31 @@ var MongoStore = require('connect-mongo')(session);
 
 mongoose.connect(config.mongodb_url);
 
-app.use(session({
-  proxy: true,
-  secret: config.session_secret,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: true },
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection,
-    touchAfter: 24 * 3600 // time period in seconds
-  })
-}));
+if (config.node_environment === 'production') {
+  app.use(session({
+    proxy: true,
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      touchAfter: 24 * 3600 // time period in seconds
+    })
+  }));
+}
+else {
+  app.use(session({
+    proxy: true,
+    secret: config.session_secret,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      touchAfter: 24 * 3600 // time period in seconds
+    })
+  }));
+}
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
