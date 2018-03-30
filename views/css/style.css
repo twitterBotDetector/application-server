@@ -3,6 +3,16 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300
 *{
 	box-sizing: border-box;
 }
+
+#backcolor{
+  background: #83a4d4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+
 /*JUMBOTRON */
 .jumbotron{
 	clear: both;
@@ -11,6 +21,7 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300
 	background: #34e89e; /* fallback for old browsers*/
 	background: -webkit-linear-gradient(to right, #34e89e, #0f3443);/* Chrome 10-25 */
 	background: linear-gradient(to right, #34e89e, #0f3443);/*IE10+, cHROME26+, Firefox16+*/
+  margin-bottom: 0px;
 }
 .welcome-header{
     color:#0f3443;
@@ -19,7 +30,7 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300
 }
 img{
 	max-width: 40%;
-	height: auto;
+	height: auto !important;
 	float: right;
 }
 .jumbotron .btn-group {
@@ -33,6 +44,8 @@ img{
 .preference-search{
 	font-family:'Rokkitt', serif;
 	text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 15px;
 }
 .form-inline{
    display: inline;
@@ -57,22 +70,35 @@ img{
 /**Tweet Display **/
 #tweetDisplay{
 margin: 0px;
-background: #36D1DC;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/**background: #36D1DC;  /* fallback for old browsers */
+/**background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+/**background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ background: #83a4d4;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #tweetDisplay > .col-12, #tweetDisplay > .col-md-4 {
 	padding: 0px;
-	margin-top: 35px;
+	margin-top: 55px;
 }
-
 .hidden{ display: none; }
 
 hr{ margin: 0px; }
 
 .card{ border: 0px; margin-left: 10%; }
-.card-body{ padding-top: 10px; padding-bottom: 10px;}
+.card-header { 
+   background: #11998e;  /* fallback for old browsers */
+   background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+   background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ }
+.card-body{ 
+  padding-top: 10px; padding-bottom: 10px;
+ /** background: #83a4d4;  /* fallback for old browsers */
+ /**background: -webkit-linear-gradient(to bottom, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
+ /**background: linear-gradient(to bottom, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}  
+.badge-warning{ text-transform:capitalize;}
 #verify{ display: inline; float: right;}
 
 /**@media (max-width: 1200px) {

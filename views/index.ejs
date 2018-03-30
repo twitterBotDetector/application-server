@@ -33,11 +33,12 @@
 		   </div>
 		</div><!--jumbotron-->
 	</div><!--container-fluid-->
-    
-    <h2 class="preference-search"><strong>Bot Detection Preference</strong></h2>
-    <br>
-	<section class="row" id="search-bot">
 
+    <div id="backcolor">
+
+     <h2 class="preference-search"><strong>Bot Detection Preference</strong></h2>
+
+	 <section class="row" id="search-bot">
       <!--Detection of Bots Using User_Id -->
 		<form method="post" action="https://tweebotd.herokuapp.com/api/extractUserData/">
 		 <div class="row-fluid">
@@ -49,19 +50,14 @@
 		    </div>
 		 </div>
         </form>
-
-	</section>  	
-    <br><br><br>
-
+	 </section>  	
+    </div>
     <!--Display User Tweets-->
 	<div class="row hidden" id="tweetDisplay">  
 	</div><!----End of Row-->
 
-
 	<script src="js/jquery.min.js"></script>
-
-  <script  src="takeTweet.js" type="text/javascript">
-  </script>
+    <script src="takeTweet.js"></script>
 
 </body>
 </html>
