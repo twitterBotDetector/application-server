@@ -14,15 +14,27 @@ catch (e) {
         "redis_hostname":       process.env.redis_hostname,
         "redis_port":           process.env.redis_port,
         "redis_password":       process.env.redis_password,
-        "lambda_url":           process.env.lambda_url
+        "lambda_url":           process.env.lambda_url,
+        "node_environment":     process.env.node_environment
     }     
 }
 
-//Initialise redis connection
-var client = redis.createClient(config.redis_port, config.redis_hostname, {no_ready_check: true});
-client.auth(config.redis_password, function (err) {
-    if (err) throw err;
-});
+/**************************************************************************
+ * If environment is production, then connect to the hosted redis server
+ * Else, connect to the local redis client for testing
+***************************************************************************/
+if (config.node_environment === 'production') {
+    var client = redis.createClient(config.redis_port, config.redis_hostname, {no_ready_check: true});
+    client.auth(config.redis_password, function (err) {
+        if (err) throw err;
+    });
+} 
+else {
+    client = redis.createClient();
+    client.on("error", function (err) {
+        console.log(`Error: ${err}`);
+    });
+}
 
 client.on('connect', function() {
     console.log('Connected to Redis');
