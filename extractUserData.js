@@ -52,7 +52,10 @@ exports.extractUserData = function(app, bodyParser) {
             client.get(userId, function (err, reply) {
                 if (err) throw err;
                 if (reply) {
-                    response.send(reply);
+                    userClassification = {
+                        bot: reply
+                    }
+                    response.send(userClassification);
                 }
                 else {
                     let urlRatio = 0, source = null, entropy = 0;
@@ -197,7 +200,10 @@ function classifyUser(response, userId, userData) {
         function (error, resp, body) {
             //store the classification response (bot[1] or human[0]) in redis
             client.set(userId, resp.body, redis.print);
-            response.send(String(resp.body));
+            userClassification = {
+                bot: String(resp.body)
+            }
+            response.send(userClassification);
         }
     );
 }
