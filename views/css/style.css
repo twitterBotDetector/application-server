@@ -36,9 +36,9 @@ img{
 .jumbotron .btn-group {
 	padding-bottom: 1.5em;
 }
-#twitb{ background-color: #00aced; }
-#twitbi{ width:2px; height:20px; color:#ffffff; }
-#signIn{ background-color:#00aced; width:190%;color:#ffffff; }
+#twitbi{ width:2px; height:20px; color:#ffffff; 
+         padding-left: 9px; padding-right: 7px;}
+#signIn{ background-color:#00aced;width:190%;color:#ffffff; }
 
 /*Detect Preference*/
 .preference-search{

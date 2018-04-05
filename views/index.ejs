@@ -23,8 +23,7 @@
 			<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
 
 			<div class="btn-group">
-		      <a class='btn' id="twitb"><i class="fa fa-twitter" id="twitbi"></i></a>
-		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter'> <%= (!!userName)?userName: 'Sign In with Twitter' %></a>
+		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter'> <%= (!!userName)?userName: 'Sign In with Twitter' %><i class="fa fa-twitter" id="twitbi"></i></a>
 	        </div>
 
 	       </div>    
@@ -45,7 +44,7 @@
 		 	<div class="form-group mx-sm-3 mb-2">
 		 	 <div class="input-group">
 		 	   <input type="text" class="form-control" name="userId" placeholder="UserId" id="userid-search">
-		       <button type="submit" class=" input-group-btn btn btn-info" id="searchB"><i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Search</button>
+		       <button type="submit" class=" input-group-btn btn btn-info" id="searchB"><i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Search</button><span id="resultId"></span>
 		 	 </div>
 		    </div>
 		 </div>
