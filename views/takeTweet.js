@@ -8,7 +8,8 @@
   				if (data) {
                   
                   $('#tweetDisplay').removeClass("hidden");     
-            
+                  $('#logOut').removeClass("hidden");
+
                  function showTweets(tweets){
                    document.querySelector("#tweetDisplay").innerHTML += tweets;
                  }

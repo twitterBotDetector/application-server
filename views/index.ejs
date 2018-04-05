@@ -24,6 +24,8 @@
 
 			<div class="btn-group">
 		      <a class='btn' id='signIn' href='https://Tweebotd.herokuapp.com/auth/twitter'> <%= (!!userName)?userName: 'Sign In with Twitter' %><i class="fa fa-twitter" id="twitbi"></i></a>
+		      <a class='btn hidden' id='logOut' href='https://Tweebotd.herokuapp.com/logout'><%= (!!userName)?'Logout': '' %>
+		      </a> 
 	        </div>
 
 	       </div>    
@@ -57,6 +59,7 @@
 
 	<script src="js/jquery.min.js"></script>
     <script src="takeTweet.js"></script>
+    <script src="userSearch.js"></script>
 
 </body>
 </html>
