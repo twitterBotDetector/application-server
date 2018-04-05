@@ -14,15 +14,27 @@ catch (e) {
         "redis_hostname":       process.env.redis_hostname,
         "redis_port":           process.env.redis_port,
         "redis_password":       process.env.redis_password,
-        "lambda_url":           process.env.lambda_url
+        "lambda_url":           process.env.lambda_url,
+        "node_environment":     process.env.node_environment
     }     
 }
 
-//Initialise redis connection
-var client = redis.createClient(config.redis_port, config.redis_hostname, {no_ready_check: true});
-client.auth(config.redis_password, function (err) {
-    if (err) throw err;
-});
+/**************************************************************************
+ * If environment is production, then connect to the hosted redis server
+ * Else, connect to the local redis client for testing
+***************************************************************************/
+if (config.node_environment === 'production') {
+    var client = redis.createClient(config.redis_port, config.redis_hostname, {no_ready_check: true});
+    client.auth(config.redis_password, function (err) {
+        if (err) throw err;
+    });
+} 
+else {
+    client = redis.createClient();
+    client.on("error", function (err) {
+        console.log(`Error: ${err}`);
+    });
+}
 
 client.on('connect', function() {
     console.log('Connected to Redis');
@@ -40,7 +52,10 @@ exports.extractUserData = function(app, bodyParser) {
             client.get(userId, function (err, reply) {
                 if (err) throw err;
                 if (reply) {
-                    response.send(reply);
+                    userClassification = {
+                        bot: reply
+                    }
+                    response.send(userClassification);
                 }
                 else {
                     let urlRatio = 0, source = null, entropy = 0;
@@ -185,7 +200,10 @@ function classifyUser(response, userId, userData) {
         function (error, resp, body) {
             //store the classification response (bot[1] or human[0]) in redis
             client.set(userId, resp.body, redis.print);
-            response.send(String(resp.body));
+            userClassification = {
+                bot: String(resp.body)
+            }
+            response.send(userClassification);
         }
     );
 }
