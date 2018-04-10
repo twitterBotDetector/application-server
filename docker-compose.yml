@@ -1,0 +1,56 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017"
+
+  redis:
+    image: redis
+    ports:
+      - "6379"
+
+  ui:
+    image: drish96/tweebotd
+    depends_on:
+      - mongo
+      - redis
+    secrets:
+      - consumer_key
+      - consumer_secret
+      - access_token
+      - access_token_secret
+      - session_secret
+      - mongodb_url
+      - redis_port
+      - redis_hostname
+      - callback_url
+      - lambda_url
+      - node_environment
+    ports:
+      - "8085:8085"
+
+secrets:
+  consumer_key:
+    external: true
+  consumer_secret:
+    external: true
+  access_token:
+    external: true
+  access_token_secret:
+    external: true
+  session_secret:
+    external: true
+  mongodb_url:
+    external: true
+  redis_port:
+    external: true
+  redis_hostname:
+    external: true
+  callback_url:
+    external: true
+  lambda_url:
+    external: true
+  node_environment:
+    external: true
