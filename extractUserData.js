@@ -214,10 +214,17 @@ function classifyUser(response, userId, userData) {
         config.lambda_url,
         { json: userData },
         function (error, resp, body) {
-            //store the classification response (bot[1] or human[0]) in redis
-            client.set(userId, resp.body, redis.print);
-            userClassification = {
-                bot: String(resp.body)
+            if (resp.body == 1 || resp.body == 0) {
+                //store the classification response (bot[1] or human[0]) in redis
+                client.set(userId, resp.body, redis.print);
+                userClassification = {
+                    bot: String(resp.body)
+                }
+            }
+            else {
+                userClassification = {
+                    bot: "1"
+                }
             }
             response.send(userClassification);
         }
