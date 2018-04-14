@@ -100,6 +100,9 @@ login.authCallback(app);
 var fetchTweets = require('./fetchTweets.js');
 fetchTweets.fetchTweets(app);
 
+var classifyUserName = require('./classifyUserName');
+classifyUserName.classifyUserName(app);
+
 var extractData = require('./extractUserData');
 extractData.extractUserData(app, bodyParser);
 
