@@ -215,8 +215,9 @@ function classifyUser(response, userId, userData) {
         { json: userData },
         function (error, resp, body) {
             if (resp.body == 1 || resp.body == 0) {
-                //store the classification response (bot[1] or human[0]) in redis
+                //store the classification response (bot[1] or human[0]) in redis and set the cache expiry to 24 hours
                 client.set(userId, resp.body, redis.print);
+                client.expire(userId, 86400);
                 userClassification = {
                     bot: String(resp.body)
                 }
