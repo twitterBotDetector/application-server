@@ -26,13 +26,29 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var passport = require('passport'),
   TwitterStrategy = require('passport-twitter').Strategy;
 
+var fs = require('fs');
+/*
+ * First, check for config.js file for environment variables
+ * If that fails, then check /run/secrets/ (assuming docker environment)
+ * Else, fall back to process.env
+ */
 try {
   var config = require("./config");
 } catch (e) {
-  var config = {
-    "session_secret": process.env.session_secret,
-    "mongodb_url": process.env.mongodb_url,
-    "node_environment": process.env.node_environment
+  try {
+    var config = {
+      "node_environment": fs.readFileSync('/run/secrets/node_environment', 'utf8').trim(),
+      "mongodb_url": fs.readFileSync('/run/secrets/mongodb_url', 'utf8').trim(),
+      "session_secret": fs.readFileSync('/run/secrets/session_secret', 'utf8').trim()
+    } 
+  }
+  catch(err) {
+    console.log(err);
+    var config = {
+      "node_environment": process.env.node_environment,
+      "mongodb_url": process.env.mongodb_url,
+      "session_secret": process.env.session_secret
+    } 
   }
 }
 
@@ -83,6 +99,9 @@ login.authCallback(app);
 
 var fetchTweets = require('./fetchTweets.js');
 fetchTweets.fetchTweets(app);
+
+var classifyUserName = require('./classifyUserName');
+classifyUserName.classifyUserName(app);
 
 var extractData = require('./extractUserData');
 extractData.extractUserData(app, bodyParser);

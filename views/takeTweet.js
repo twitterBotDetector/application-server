@@ -1,10 +1,10 @@
 	//Tweet Display
   	$(document).ready(function(){
+  		var userId = [];
   		$.ajax({
   			url: "/api/fetchTweets",
   			dataType: "json",
   			success: function(data){
-  				//console.log(data);
   				if (data) {
                   
                   $('#tweetDisplay').removeClass("hidden");     
@@ -42,9 +42,23 @@
 	               </div>
                   </div>`
                  }
-                //$('.card-header').append(data[0].created_at);
   				}//endIf
+  				for(var i=0; i<data.length; i++){
+  					userId [i] = (data[i].user.id);
+  				}
   			}//endSuccess
+  		});
+
+            console.log(userId);
+  			$.ajax({
+  			 url: "/api/extractUserData/",
+  			 method: "POST",
+  			 type: "POST",
+  			 data: {userId:userId},
+  			 dataType: "json",
+  			 success: function(data){
+              console.log(data);
+  			 }//end success
   		});
   		
   	});

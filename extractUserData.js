@@ -2,20 +2,36 @@ var requestClassification = require('request');
 var redis = require('redis');
 
 var Twit = require('twit');
+
+var fs = require('fs');
 try {
     var config = require("./config");
 }
 catch (e) {
-    var config = {
-        "consumer_key":         process.env.consumer_key,
-        "consumer_secret":      process.env.consumer_secret,
-        "access_token":         process.env.access_token,
-        "access_token_secret":  process.env.access_token_secret,
-        "redis_hostname":       process.env.redis_hostname,
-        "redis_port":           process.env.redis_port,
-        "redis_password":       process.env.redis_password,
-        "lambda_url":           process.env.lambda_url,
-        "node_environment":     process.env.node_environment
+    try {
+        var config = {
+          "consumer_key": fs.readFileSync('/run/secrets/consumer_key', 'utf8').trim(),
+          "consumer_secret": fs.readFileSync('/run/secrets/consumer_secret', 'utf8').trim(),
+          "access_token": fs.readFileSync('/run/secrets/access_token', 'utf8').trim(),
+          "access_token_secret": fs.readFileSync('/run/secrets/access_token_secret', 'utf8').trim(),
+          "redis_hostname": fs.readFileSync('/run/secrets/redis_hostname', 'utf8').trim(),
+          "redis_port": fs.readFileSync('/run/secrets/redis_port', 'utf8').trim(),
+          "lambda_url": fs.readFileSync('/run/secrets/lambda_url', 'utf8').trim(),
+          "node_environment": fs.readFileSync('/run/secrets/node_environment', 'utf8').trim()
+        } 
+    }
+    catch(err) {
+        var config = {
+            "consumer_key":         process.env.consumer_key,
+            "consumer_secret":      process.env.consumer_secret,
+            "access_token":         process.env.access_token,
+            "access_token_secret":  process.env.access_token_secret,
+            "redis_hostname":       process.env.redis_hostname,
+            "redis_port":           process.env.redis_port,
+            "redis_password":       process.env.redis_password,
+            "lambda_url":           process.env.lambda_url,
+            "node_environment":     process.env.node_environment
+        }
     }     
 }
 
@@ -30,7 +46,7 @@ if (config.node_environment === 'production') {
     });
 } 
 else {
-    client = redis.createClient();
+    client = redis.createClient(config.redis_port, config.redis_hostname);
     client.on("error", function (err) {
         console.log(`Error: ${err}`);
     });
@@ -198,10 +214,18 @@ function classifyUser(response, userId, userData) {
         config.lambda_url,
         { json: userData },
         function (error, resp, body) {
-            //store the classification response (bot[1] or human[0]) in redis
-            client.set(userId, resp.body, redis.print);
-            userClassification = {
-                bot: String(resp.body)
+            if (resp.body == 1 || resp.body == 0) {
+                //store the classification response (bot[1] or human[0]) in redis and set the cache expiry to 24 hours
+                client.set(userId, resp.body, redis.print);
+                client.expire(userId, 86400);
+                userClassification = {
+                    bot: String(resp.body)
+                }
+            }
+            else {
+                userClassification = {
+                    bot: "1"
+                }
             }
             response.send(userClassification);
         }
