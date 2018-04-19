@@ -1,27 +1,24 @@
 	//Tweet Display
-  	$(document).ready(function(){
-  		var userId = [];
-  		$.ajax({
-  			url: "/api/fetchTweets",
-  			dataType: "json",
-  			success: function(data){
-  				if (data) {
-                  
-                  $('#tweetDisplay').removeClass("hidden");     
-                  $('#logOut').removeClass("hidden");
+	$(document).ready(function () {
+		var userId = [];
+		var color = '';
+		$.ajax({
+			url: "/api/fetchTweets",
+			dataType: "json",
+			success: function (data) {
+				if (data) {
 
-                 function showTweets(tweets){
-                   document.querySelector("#tweetDisplay").innerHTML += tweets;
-                 }
-                  data.map(getTweetDetails).forEach(showTweets);
-                 function getTweetDetails(data)
-                 {  
-                  return `<div class="col-md-4 col-12" id="card-space">
+					$('#tweetDisplay').removeClass("hidden");
+					$('#logOut').removeClass("hidden");
+
+					function getTweetDetails(data, userClass, color) {
+						return `<div class="col-md-4 col-12" id="card-space">
                    <div class="card w-75 border-light">
                       <div class="card-header">
                       <img src=${data.user.profile_image_url_https}></img>
       	                <h5 class="alert-link">${data.user.name}</h5>
-                        <h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
+						<h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
+						<i id="classification"><u style="color: ${color};">${userClass}</u></i>
                         <p id="verify">Verified User : <span class="badge badge-info">${data.user.verified}</span></p>	
                        </div>
            
@@ -41,24 +38,43 @@
                     </div>-->
 	               </div>
                   </div>`
-                 }
-  				}//endIf
-  				for(var i=0; i<data.length; i++){
-  					userId [i] = (data[i].user.id);
-  				}
-  			}//endSuccess
-  		});
+					}
+				} //endIf
+				for (var i = 0; i < data.length; i++) {
+					userId[i] = (data[i].user.id);
+				}
 
-            console.log(userId);
-  			$.ajax({
-  			 url: "/api/extractUserData/",
-  			 method: "POST",
-  			 type: "POST",
-  			 data: {userId:userId},
-  			 dataType: "json",
-  			 success: function(data){
-              console.log(data);
-  			 }//end success
-  		});
-  		
-  	});
+				for (let i = 0; i < userId.length; i++) {
+					let element = userId[i];
+					// console.log(element);
+					$.ajax({
+						url: "/api/extractUserData/",
+						method: "POST",
+						type: "POST",
+						data: {
+							userId: element
+						},
+						dataType: "json",
+						success: function (userClass) {
+							console.log(userClass);
+
+							function showTweets(tweets) {
+								document.querySelector("#tweetDisplay").innerHTML += tweets;
+							}
+							
+							if (userClass.bot == 1) {
+								userClass = "bot";
+								color = "red";
+							}
+							else {
+								userClass = "human";
+								color = "green"
+							}
+
+							showTweets(getTweetDetails(data[i], userClass, color));
+						} //end success
+					});
+				}
+			} //endSuccess
+		});
+	});

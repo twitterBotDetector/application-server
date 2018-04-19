@@ -75,7 +75,7 @@ exports.extractUserData = function(app, bodyParser) {
                 }
                 else {
                     let urlRatio = 0, source = null, entropy = 0;
-                    let numOfTweets = 5;
+                    let numOfTweets = 20;
                     let username = '';
                     let userData = {};
                     

@@ -106,6 +106,7 @@ hr{ margin: 0px; }
 .badge-warning{ text-transform:capitalize;}
 #verify{ display: inline; float: right;}
 
+
 /**@media (max-width: 1200px) {
   #tweetDisplay {
   -moz-column-count:    4;
