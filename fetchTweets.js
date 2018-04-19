@@ -27,7 +27,8 @@ exports.fetchTweets = function (app) {
         access_token_secret: request.user.tokenSecret,
       });
 
-      T.get('statuses/home_timeline', {count: 3}, function (err, data, resp) {
+      T.get('statuses/home_timeline', {count: 15}, function (err, data, resp) {
+
         response.send(data);
       });
     }
