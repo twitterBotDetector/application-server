@@ -105,6 +105,7 @@ hr{ margin: 0px; }
 }  
 .badge-warning{ text-transform:capitalize;}
 #verify{ display: inline; float: right;}
+#classification{ color: #644A6B; }
 
 
 /**@media (max-width: 1200px) {
