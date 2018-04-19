@@ -10,14 +10,14 @@
 					$('#tweetDisplay').removeClass("hidden");
 					$('#logOut').removeClass("hidden");
 
-					function getTweetDetails(data, userClass, color) {
+					function getTweetDetails(data, userClass) {
 						return `<div class="col-md-4 col-12" id="card-space">
                    <div class="card w-75 border-light">
                       <div class="card-header">
                       <img src=${data.user.profile_image_url_https}></img>
       	                <h5 class="alert-link">${data.user.name}</h5>
 						<h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
-						<i id="classification"><u style="color: ${color};">${userClass}</u></i>
+						<i id="classification"><u>${userClass}</u></i>
                         <p id="verify">Verified User : <span class="badge badge-info">${data.user.verified}</span></p>	
                        </div>
            
@@ -63,11 +63,9 @@
 							
 							if (userClass.bot == 1) {
 								userClass = "Bot";
-								var color = 'red';
 							}
 							else {
 								userClass = "Human";
-	                            color = 'green'
 							}
 
 							showTweets(getTweetDetails(data[i], userClass, color));
