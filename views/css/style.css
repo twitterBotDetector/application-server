@@ -105,34 +105,5 @@ hr{ margin: 0px; }
 }  
 .badge-warning{ text-transform:capitalize;}
 #verify{ display: inline; float: right;}
-#classification{ color: #644A6B; }
+/*#classification{ color: #644A6B; }*/
 
-
-/**@media (max-width: 1200px) {
-  #tweetDisplay {
-  -moz-column-count:    4;
-  -webkit-column-count: 4;
-  column-count:         4;
-  }
-}
-@media (max-width: 1000px) {
-  #tweetDisplay {
-  -moz-column-count:    3;
-  -webkit-column-count: 3;
-  column-count:         3;
-  }
-}
-@media (max-width: 800px) {
-  #tweetDisplay {
-  -moz-column-count:    2;
-  -webkit-column-count: 2;
-  column-count:         2;
-  }
-}
-@media (max-width: 400px) {
-  #tweetDisplay {
-  -moz-column-count:    1;
-  -webkit-column-count: 1;
-  column-count:         1;
-  }
-}**/

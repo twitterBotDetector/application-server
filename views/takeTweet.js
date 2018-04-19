@@ -1,7 +1,6 @@
 	//Tweet Display
 	$(document).ready(function () {
 		var userId = [];
-		var color = '';
 		$.ajax({
 			url: "/api/fetchTweets",
 			dataType: "json",
@@ -11,7 +10,7 @@
 					$('#tweetDisplay').removeClass("hidden");
 					$('#logOut').removeClass("hidden");
 
-					function getTweetDetails(data, userClass) {
+					function getTweetDetails(data, userClass, color) {
 						return `<div class="col-md-4 col-12" id="card-space">
                    <div class="card w-75 border-light">
                       <div class="card-header">
@@ -64,13 +63,14 @@
 							
 							if (userClass.bot == 1) {
 								userClass = "Bot";
+								var color = 'red';
 							}
 							else {
 								userClass = "Human";
-	
+	                            color = 'green'
 							}
 
-							showTweets(getTweetDetails(data[i], userClass));
+							showTweets(getTweetDetails(data[i], userClass, color));
 						} //end success
 					});
 				}
