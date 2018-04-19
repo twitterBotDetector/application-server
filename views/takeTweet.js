@@ -68,7 +68,7 @@
 								userClass = "Human";
 							}
 
-							showTweets(getTweetDetails(data[i], userClass, color));
+							showTweets(getTweetDetails(data[i], userClass));
 						} //end success
 					});
 				}
