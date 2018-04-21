@@ -28,7 +28,7 @@ link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300
     text-shadow: 4px 4px 5px hsla(120,100%,50%,0.3);
     font-family:'Rokkitt', serif;
 }
-img{
+#bot-pic{
 	max-width: 40%;
 	height: auto !important;
 	float: right;
@@ -45,13 +45,19 @@ background: -webkit-linear-gradient(to bottom, #ef473a, #cb2d3e);  /* Chrome 10-
 background: linear-gradient(to bottom, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 width:190%;color:#2a0845;}
 
-/*Detect Preference*/
+/*Search Twitter Handle*/
 .preference-search{
 	font-family:'Rokkitt', serif;
 	text-align: center;
   margin-bottom: 0px;
   padding-bottom: 15px;
 }
+#think{
+      width: 7em; height: auto;
+      display: block;
+      margin: 0 auto;
+}
+
 .form-inline{
    display: inline;
 }
