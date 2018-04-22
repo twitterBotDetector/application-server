@@ -17,7 +17,7 @@
                       <img src=${data.user.profile_image_url_https} id="profile-image"></img>
       	                <h5 class="alert-link" id="name-person">${data.user.name}</h5>
 						<h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
-						<i id="classification"><u><font color="color">${userClass}</font></u></i>
+						<p id="classification"><u><font color="${color}">${userClass}</font></u></p>
                         <p id="verify">Verified User : <span class="badge badge-info">${data.user.verified}</span></p>	
                        </div>
            

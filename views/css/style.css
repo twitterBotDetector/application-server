@@ -1,4 +1,4 @@
-link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Rokkitt:300")
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed');
 
 *{
 	box-sizing: border-box;
@@ -123,7 +123,7 @@ hr{ margin: 0px; }
 }  
 .badge-warning, #name-person{ text-transform:capitalize;}
 #verify{ display: inline; float: right;}
-#classification{ color: #644A6B; }
+#classification{ font-family: 'IBM Plex Sans Condensed', sans-serif; }
  #profile-image{
   max-width: 40%;
   height: auto !important;
