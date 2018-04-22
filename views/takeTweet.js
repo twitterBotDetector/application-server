@@ -10,14 +10,14 @@
 					$('#tweetDisplay').removeClass("hidden");
 					$('#logOut').removeClass("hidden");
 
-					function getTweetDetails(data, userClass) {
+					function getTweetDetails(data, userClass, color) {
 						return `<div class="col-md-4 col-12" id="card-space">
                    <div class="card w-75 border-light">
                       <div class="card-header">
-                      <img src=${data.user.profile_image_url_https}></img>
-      	                <h5 class="alert-link">${data.user.name}</h5>
+                      <img src=${data.user.profile_image_url_https} id="profile-image"></img>
+      	                <h5 class="alert-link" id="name-person">${data.user.name}</h5>
 						<h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
-						<i id="classification"><u>${userClass}</u></i>
+						<i id="classification"><u><font color="color">${userClass}</font></u></i>
                         <p id="verify">Verified User : <span class="badge badge-info">${data.user.verified}</span></p>	
                        </div>
            
@@ -43,6 +43,7 @@
 					userId[i] = (data[i].user.id);
 				}
 
+                var color = 'red';
 				for (let i = 0; i < userId.length; i++) {
 					let element = userId[i];
 					// console.log(element);
@@ -63,12 +64,14 @@
 							
 							if (userClass.bot == 1) {
 								userClass = "Bot";
+                                color = "red";
 							}
 							else {
 								userClass = "Human";
+								color = "green";
 							}
 
-							showTweets(getTweetDetails(data[i], userClass));
+							showTweets(getTweetDetails(data[i], userClass, color));
 						} //end success
 					});
 				}

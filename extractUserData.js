@@ -112,7 +112,7 @@ exports.extractUserData = function(app, bodyParser) {
                             }
                         })
                         .then(function() {
-                            T.get('friends/ids', { screen_name: String(username), count: 5 }, function (err, data, resp) {
+                            T.get('friends/ids', { screen_name: String(username), count: 20 }, function (err, data, resp) {
                                 if (err) {
                                     if (!response.headersSent) {
                                         response.sendStatus(404);

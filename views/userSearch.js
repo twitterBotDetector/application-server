@@ -3,7 +3,7 @@
 $(document).ready(function(){  	
   	$('#searchB').on("click", function(){
   		$.ajax({
-  			url: "/api/extractUserData/",
+  			url: "/",
   			method: "POST",
   			type: "POST",
   			dataType: "json",
