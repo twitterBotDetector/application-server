@@ -1,10 +1,7 @@
 //UserId Search Result Display
-//#resultId
-$(document).ready(function(){  	
+//#resultId	
   	$('#searchB').on("click", function(){
   		$.ajax({
-  			url: "/",
-  			method: "POST",
   			type: "POST",
   			dataType: "json",
   			success: function(data){
@@ -13,4 +10,4 @@ $(document).ready(function(){
   			 }//end success
   		});
   		});
-  	});	
+ 
