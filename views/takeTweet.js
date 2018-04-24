@@ -1,5 +1,5 @@
 	//Tweet Display
-	$('#signIn').on("click", function () {
+	$(document).ready(function () {
 		var userId = [];
 		$.ajax({
 			url: "/api/fetchTweets",
