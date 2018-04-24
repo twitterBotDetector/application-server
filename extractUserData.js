@@ -95,7 +95,7 @@ exports.extractUserData = function(app, bodyParser) {
                         }
                         else {
                             username = data.screen_name;
-                            userData.friendToFollowerRatio = data.friends_count / data.followers_count;
+                            userData.followerToFriendRatio = data.followers_count / data.friends_count;
                         }
                     })
                     .then(function() {

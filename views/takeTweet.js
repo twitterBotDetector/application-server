@@ -9,7 +9,7 @@
 
 					$('#tweetDisplay').removeClass("hidden");
 					$('#logOut').removeClass("hidden");
-                    $('#signIn').attr("disabled", "disabled");
+                    $('#signIn').attr("disabled", 'disabled');
 
 					function getTweetDetails(data, userClass, color) {
 						return `<div class="col-md-4 col-12" id="card-space">
