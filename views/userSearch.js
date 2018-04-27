@@ -17,7 +17,7 @@
               }
               else {
                 document.getElementById("#resultId").innerHTML = 'HUMAN';
-                $("#resultId").css('color', '"#0f9b0f"');
+                $("#resultId").css('color', '#0f9b0f');
               }
             }
   			 }//end success
