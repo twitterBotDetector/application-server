@@ -57,7 +57,7 @@
 						},
 						dataType: "json",
 						success: function (userClass) {
-							console.log(userClass);
+							//console.log(userClass);
 
 							function showTweets(tweets) {
 								document.querySelector("#tweetDisplay").innerHTML += tweets;

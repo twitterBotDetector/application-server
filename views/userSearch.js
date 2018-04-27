@@ -1,6 +1,6 @@
 //UserId Search Result Display
 //#resultId	
-  	$(document).ready(function(){
+  	$("#searchB").on("click", function(){
   		$.ajax({
   			type: "GET",
         url: "/api/classifyUserName/",
