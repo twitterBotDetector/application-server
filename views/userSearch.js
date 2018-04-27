@@ -1,8 +1,8 @@
 //UserId Search Result Display
 //#resultId	
+   window.onload = function(){
   	$('#searchB').click(function(e){
       e.preventDefault();
-      var userClass='';
   		$.ajax({
   			type: "GET",
         url: "/api/classifyUserName/",
@@ -25,4 +25,4 @@
   			 }//end success
   		});
   	});
- 
+ }
