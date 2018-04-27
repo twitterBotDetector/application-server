@@ -95,7 +95,7 @@ exports.extractUserData = function(app, bodyParser) {
                         }
                         else {
                             username = data.screen_name;
-                            userData.followerToFriendRatio = data.followers_count / data.friends_count;
+                            userData.friendToFollowerRatio = data.followers_count / data.friends_count;
                         }
                     })
                     .then(function() {
@@ -107,8 +107,8 @@ exports.extractUserData = function(app, bodyParser) {
                             }
                             else {
                                 userData.urlRatio = extractUrlRatio(data, numOfTweets);
-                                userData.source = extractSource(data);
-                                userData.entropy = extractEntropy(data, numOfTweets);
+                                userData.source   = extractSource(data);
+                                userData.entropy  = extractEntropy(data, numOfTweets);
                             }
                         })
                         .then(function() {
