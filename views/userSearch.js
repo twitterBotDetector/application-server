@@ -9,17 +9,17 @@
             },
   			dataType: "json",
   			success: function(data){
+            if(data){
               console.log(data);
               if (data.bot == 1) {
                 document.getElementById("#resultId").innerHTML = 'BOT';
                 $("#resultId").css('color', 'red');
               }
               else {
-                color = "#0f9b0f";
                 document.getElementById("#resultId").innerHTML = 'HUMAN';
                 $("#resultId").css('color', '"#0f9b0f"');
               }
-            
+            }
   			 }//end success
   		});
   	});
