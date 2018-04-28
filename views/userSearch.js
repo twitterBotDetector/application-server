@@ -1,7 +1,7 @@
 //UserId Search Result Display
 //#resultId	
   	$("#searchB").click(function(){
-      $('#loader').removeClass("hidden");
+      $('#loader-div').removeClass("hidden");
       var userClass = '';
       var color = '';
   		$.ajax({
@@ -21,7 +21,7 @@
                         </span>`}
 
             function displayResult(classifyResult) {
-                $('#loader').addClass("hidden");
+                $('#loader-div').addClass("hidden");
                 document.querySelector("#resultId").innerHTML = classifyResult;
               }
               if (data.bot == 1) {
