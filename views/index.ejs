@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-	<meta name="description" content="Twitter,Bot,botornot, bot or not, tweets, tags, userid, Twitter Bots">     
+	<meta name="description" content="Twitter,Bot,botornot, bot or not, tweets, tags, userid, Twitter Bots">
 
 	<title>TweeBotD</title>
-    <link rel="shortcut icon" href="icon.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Rokkitt:300" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="shortcut icon" href="icon.ico" />
+	<link href="https://fonts.googleapis.com/css?family=Rokkitt:300" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/material.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
+
 <body>
 	<div class="container-fluid" id="header">
 		<div class="jumbotron row">
-		  <div class="col-6">
-			<h1 class="welcome-header">Welcome to TweeBotD</h1>
-			<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
+			<div class="col-6">
+				<h1 class="welcome-header">Welcome to TweeBotD</h1>
+				<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
 
-			<div class="btn-group">
-		      <a class='btn' id='signIn' href='https://tweebotd.herokuapp.com/auth/twitter'> <%= (!!userName)?userName: 'Sign In with Twitter' %><i class="fa fa-twitter" id="twitbi"></i></a>
-		      <a class='btn hidden' id='logOut' href='https://tweebotd.herokuapp.com/logout'>Logout
-		      </a>
-	        </div>
+				<div class="btn-group">
+					<a class='btn' id='signIn' href='https://tweebotd.herokuapp.com/auth/twitter'>
+						<%= (!!userName)?userName: 'Sign In with Twitter' %>
+							<i class="fa fa-twitter" id="twitbi"></i>
+					</a>
+					<a class='btn hidden' id='logOut' href='https://tweebotd.herokuapp.com/logout'>Logout
+					</a>
+				</div>
 
-	       </div>    
-	       <div class="col-6">
-			 <img src="icon.png" alt="Bot Image" id="bot-pic">
-		   </div>
-		</div><!--jumbotron-->
-	</div><!--container-fluid-->
+			</div>
+			<div class="col-6">
+				<img src="icon.png" alt="Bot Image" id="bot-pic">
+			</div>
+		</div>
+		<!--jumbotron-->
+	</div>
+	<!--container-fluid-->
 
-    <div id="backcolor">
+	<div id="backcolor">
 
-     <h2 class="preference-search"><strong>Is Thy User a Bot ?</strong></h2><img src="think.png" id="think" class="img-fluid">
+		<h2 class="preference-search">
+			<strong>Is Thy User a Bot ?</strong>
+		</h2>
+		<img src="think.png" id="think" class="img-fluid">
 
-	 <section class="row" id="search-bot">
-      <!--Detection of Bots Using User_Id -->
-		<form>
-		 <div class="row-fluid">
-		 	<div class="form-group mx-sm-3 mb-2">
-		 	 <div class="input-group">
-		 	   <input type="text" class="form-control" name="userName" placeholder="Enter Twitter handle" id="userid-search">
-		       <button type="submit" class=" input-group-btn btn btn-info" id="searchB"><i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Check Out</button>
-		       <span id="resultId"></span>
-		 	 </div>
-		    </div>
-		 </div>
-        </form>
-	 </section>  	
-    </div>
-    <!--Display User Tweets-->
-	<div class="row hidden" id="tweetDisplay">  
-	</div><!----End of Row-->
+		<section class="row" id="search-bot">
+			<!--Detection of Bots Using User_Id -->
+			<div class="row-fluid">
+				<div class="form-group mx-sm-3 mb-2">
+					<div class="input-group">
+						<input type="text" class="form-control" name="userName" placeholder="Enter Twitter handle" id="userid-search">
+						<button class=" input-group-btn btn btn-info" id="searchB">
+							<i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Check Out</button>
+						<div id="loader-div" class="hidden">
+						<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loader"></div>
+						</div>
+						<span id="resultId"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!--Display User Tweets-->
+	<div class="row hidden" id="tweetDisplay">
+	</div>
+	<!----End of Row-->
 
+	<script src="js/material.min.js"></script>
 	<script src="js/jquery.min.js"></script>
-    <script src="takeTweet.js"></script>
-    <script src="userSearch.js"></script>
+	<script src="takeTweet.js"></script>
+	<script src="userSearch.js"></script>
 
 </body>
+
 </html>

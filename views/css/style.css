@@ -93,6 +93,10 @@ width:190%;color:#2a0845;}
 	padding-right: 8em;
 	margin-right: .1em;
 }
+#loader-div, #resultId{
+   padding-left: 2em;
+}
+
 
 /**Tweet Display **/
 #tweetDisplay{

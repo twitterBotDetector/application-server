@@ -1,25 +1,42 @@
 //UserId Search Result Display
 //#resultId	
   	$("#searchB").click(function(){
+      $('#loader').removeClass("hidden");
+      var userClass = '';
+      var color = '';
   		$.ajax({
   			type: "GET",
-        url: "/api/classifyUserName/",
+        url: "http://127.0.0.1:8085/api/classifyUserName/",
         data: {
               userName: $("#userid-search").val()
             },
   			dataType: "json",
   			success: function(data){
-            if(data){
-              console.log(data);
+
+          if (data) {
+
+            function showResult(userClass, color) {
+                return `<span class="mdl-chip">
+                         <span class="mdl-chip__text"><font color="${color}">${userClass}</font></span>
+                        </span>`}
+
+            function displayResult(classifyResult) {
+                $('#loader').addClass("hidden");
+                document.querySelector("#resultId").innerHTML = classifyResult;
+              }
               if (data.bot == 1) {
-                document.getElementById("#resultId").innerHTML = 'BOT';
-                $("#resultId").css('color', 'red');
+                 userClass = 'BOT';
+                 color = 'red';
               }
               else {
-                document.getElementById("#resultId").innerHTML = 'HUMAN';
-                $("#resultId").css('color', '#0f9b0f');
+                userClass = 'HUMAN';
+                color = "#6f42c1";
               }
-            }
+
+            displayResult(showResult(userClass, color));
+          }    
   			 }//end success
   		});
   	});
+
+              
