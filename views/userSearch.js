@@ -6,7 +6,7 @@
       var color = '';
   		$.ajax({
   			type: "GET",
-        url: "http://127.0.0.1:8085/api/classifyUserName/",
+        url: "/api/classifyUserName/",
         data: {
               userName: $("#userid-search").val()
             },
