@@ -1,2 +1,5 @@
-# UI
-![NSP Status](https://nodesecurity.io/orgs/tweebotd/projects/de836eee-a5ff-45d9-9d4b-1468c48442c3/badge)
+# TweeBotD (Application Server)
+
+(**Note:** This repo contains the application code for the Node.js server for the [TweeBotD](https://tweebotd.herokuapp.com) website. Check this [repository](https://github.com/twitterBotDetector/ML-classification-server) for the machine learning classification server)
+
+This project's aim is to use machine learning to identify twitter bots. It  allows users to sign in using their Twitter account and browse their Twitter timeline; showing alerts for tweets made by 'detected' bot accounts.
