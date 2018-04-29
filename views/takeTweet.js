@@ -18,7 +18,9 @@
                       <img src=${data.user.profile_image_url_https} id="profile-image"></img>
       	                <h5 class="alert-link" id="name-person">${data.user.name}</h5>
 						<h6 class="alert-link screen_name">@${data.user.screen_name}</h6>
-						<p id="classification"><u><font color="${color}">${userClass}</font></u></p>
+						<span class="mdl-chip">
+                         <span class="mdl-chip__text"><font color="${color}">${userClass}</font></span>
+                        </span>
                         <p id="verify">Verified User : <span class="badge badge-info">${data.user.verified}</span></p>	
                        </div>
            
@@ -69,7 +71,7 @@
 							}
 							else {
 								userClass = "HUMAN";
-								color = "#0f9b0f";
+								color = "#6f42c1";
 							}
 
 							showTweets(getTweetDetails(data[i], userClass, color));
