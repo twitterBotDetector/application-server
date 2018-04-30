@@ -79,12 +79,22 @@ exports.extractUserData = function(app, bodyParser) {
                     let username = '';
                     let userData = {};
                     
-                    var T = new Twit({
-                        consumer_key:         config.consumer_key,
-                        consumer_secret:      config.consumer_secret,
-                        access_token:         config.access_token,
-                        access_token_secret:  config.access_token_secret
-                    });
+                    if (request.user) {
+                        var T = new Twit({
+                          consumer_key: config.consumer_key,
+                          consumer_secret: config.consumer_secret,
+                          access_token: request.user.token,
+                          access_token_secret: request.user.tokenSecret,
+                        });
+                    }
+                    else {
+                        var T = new Twit({
+                            consumer_key:         config.consumer_key,
+                            consumer_secret:      config.consumer_secret,
+                            access_token:         config.access_token,
+                            access_token_secret:  config.access_token_secret
+                        });
+                    }
 
                     T.get('users/show', { user_id: userId }, function (err, data, resp) {
                         if (err) {
