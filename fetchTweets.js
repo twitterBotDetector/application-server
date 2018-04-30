@@ -19,7 +19,7 @@ try {
 
 exports.fetchTweets = function (app) {
   app.get('/api/fetchTweets', function (request, response) {
-    if (request.session) {
+    if (request.user) {
       var T = new Twit({
         consumer_key: config.consumer_key,
         consumer_secret: config.consumer_secret,
@@ -31,6 +31,9 @@ exports.fetchTweets = function (app) {
 
         response.send(data);
       });
+    }
+    else {
+      response.sendStatus(404);
     }
   });
 }
