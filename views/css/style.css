@@ -111,13 +111,13 @@ margin: 0px;
 
 #tweetDisplay > .col-12, #tweetDisplay > .col-md-4 {
 	padding: 0px;
-	margin-top: 55px;
+	margin-top: 25px;
 }
 .hidden{ display: none; }
 
 hr{ margin: 0px; }
 
-.card{ border: 0px; margin-left: 10%; }
+.card{ border: 0px; margin-left: 5%; margin-right: 5% }
 .card-header { 
    background: #11998e;  /* fallback for old browsers */
    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
