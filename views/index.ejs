@@ -20,25 +20,20 @@
 
 <body>
 	<div class="container-fluid" id="header">
-		<div class="jumbotron row">
-			<div class="col-6">
-				<h1 class="welcome-header">Welcome to TweeBotD</h1>
-				<p class=" lead text-justify">Detect Bots on your Twitter Account</p>
+		<section class="jumbotron row">
+			<div class="col-12">
+				<h1 class="welcome-header">TweeBotD</h1>
+				<h5 class="subtitle">Detect Bots in your Twitter Timeline</h5>
 
 				<div class="btn-group">
 					<a class='btn' id='signIn' href='/auth/twitter'>
-						<%= (!!userName)?userName: 'Sign In with Twitter' %>
-							<i class="fa fa-twitter" id="twitbi"></i>
+						<b><%= (!!userName)?userName: 'Sign In with Twitter' %></b>
 					</a>
-					<a class='btn hidden' id='logOut' href='/logout'>Logout
-					</a>
+					<a class='btn hidden' id='logOut' href='/logout'><b>Logout</b></a>
 				</div>
 
 			</div>
-			<div class="col-6">
-				<img src="icon.png" alt="Bot Image" id="bot-pic">
-			</div>
-		</div>
+		</section>
 		<!--jumbotron-->
 	</div>
 	<!--container-fluid-->

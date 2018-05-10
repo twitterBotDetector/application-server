@@ -16,18 +16,22 @@
 /*JUMBOTRON */
 .jumbotron{
 	clear: both;
-	padding-bottom: 0px;
 	padding-top: 32px;
-	background: #34e89e; /* fallback for old browsers*/
-	background: -webkit-linear-gradient(to right, #34e89e, #0f3443);/* Chrome 10-25 */
-	background: linear-gradient(to right, #34e89e, #0f3443);/*IE10+, cHROME26+, Firefox16+*/
+  background: #1da1f2; /* For browsers that do not support gradients */
+  background: rgb(29,161,242);
+  background: linear-gradient(155deg, rgba(29,161,242,1) 0%, rgba(144,0,128,1) 96%);
   margin-bottom: 0px;
 }
 .welcome-header{
-    color:#0f3443;
-    text-shadow: 4px 4px 5px hsla(120,100%,50%,0.3);
-    font-family:'Rokkitt', serif;
+    color:#ffffff;
+    font-family: Arial, Helvetica, sans-serif
 }
+
+.subtitle{
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif
+}
+
 @media only screen and (max-width: 600px){
 #bot-pic{ max-width: 80%; height: auto !important;
 	        float: right; }
@@ -50,12 +54,34 @@
 }
 #twitbi{ width:2px; height:20px; color:#ffffff; 
          padding-left: 9px; padding-right: 8px;}
-#signIn{ background-color:#00aced;width:190%;color:#ffffff; }
-#logOut{ margin-left: 15px; 
-         background: #cb2d3e;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-width:190%;color:#2a0845;}
+
+#signIn:hover{
+  background-color:#ffffff00;
+  width:190%;
+  color:#ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  border: 2px solid #ffffff;
+}
+
+#signIn{
+  background-color:#ffffff;
+  width:190%;
+  color:#1DA1F2;
+  border-radius: 20px;
+  padding: 10px;
+  border: 2px solid #ffffff;
+}
+
+#logOut{
+  margin-left: 15px; 
+  background: #cb2d3e;
+  width:190%;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  border: 2px solid #ffffff;
+}
 .disabled{
   pointer-events: none;
   cursor: default;
