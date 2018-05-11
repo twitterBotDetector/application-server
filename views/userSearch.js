@@ -1,7 +1,7 @@
 //UserId Search Result Display
 //#resultId	
   	$("#searchB").click(function(){
-      $('#loader-div').removeClass("hidden");
+      $('.loader').removeClass("hidden");
       var userClass = '';
       var color = '';
   		$.ajax({
@@ -16,12 +16,19 @@
           if (data) {
 
             function showResult(userClass, color) {
-                return `<span class="mdl-chip">
-                         <span class="mdl-chip__text"><font color="${color}">${userClass}</font></span>
-                        </span>`}
+              if (userClass === 'BOT') {
+                return `<span class="result-bot">${userClass}</span>`;
+              }
+              else {
+                return `<span class="result-human">${userClass}</span>`
+              }
+                // return `<span class="mdl-chip">
+                //          <span class="mdl-chip__text"><font color="${color}">${userClass}</font></span>
+                //         </span>`
+            }
 
             function displayResult(classifyResult) {
-                $('#loader-div').addClass("hidden");
+                $('.loader').addClass("hidden");
                 document.querySelector("#resultId").innerHTML = classifyResult;
               }
               if (data.bot == 1) {

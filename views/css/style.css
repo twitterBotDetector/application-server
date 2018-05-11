@@ -7,7 +7,8 @@
 #backcolor{
   background: #83a4d4;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgb(213,51,105);
+  background: linear-gradient(330deg, rgba(213,51,105,1) 0%, rgba(255,188,47,1) 100%);
   padding-bottom: 25px;
   padding-top: 25px;
 }
@@ -55,19 +56,19 @@
 #twitbi{ width:2px; height:20px; color:#ffffff; 
          padding-left: 9px; padding-right: 8px;}
 
-#signIn:hover{
-  background-color:#ffffff00;
+#signIn:hover, #signIn:active, #signIn:focus{
+  background-color:#ffffff;
   width:190%;
-  color:#ffffff;
+  color:#1DA1F2;
   border-radius: 20px;
   padding: 10px;
   border: 2px solid #ffffff;
 }
 
 #signIn{
-  background-color:#ffffff;
+  background-color:#ffffff00;
   width:190%;
-  color:#1DA1F2;
+  color:#ffffff;
   border-radius: 20px;
   padding: 10px;
   border: 2px solid #ffffff;
@@ -92,7 +93,7 @@
 	font-family:'Rokkitt', serif;
 	text-align: center;
   margin-bottom: 0px;
-  padding-bottom: 3px;
+  padding-bottom: 10px;
 }
 #think{
       width: 5em; height: auto;
@@ -100,29 +101,73 @@
       margin: 0 auto; padding-bottom: 7px;
 }
 
-.form-inline{
-   display: inline;
-}
-#search-bot{
-	margin: 0px;
-}
-#userid-search{	
-	padding-right: 50px;
-}
-#searchB{margin-left: 3px;}
 #searchBi{padding-right: 9%;}
 .btn-info{
 	padding-right: 1.2em;
+}
+
+.user-search-container{
+  padding: 12px;
+  width: 100%;
+}
+
+.user-search-input{
+  display: table;
+  margin: 0 auto;
+}
+
+#userid-search{
+  padding:5px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.result-bot{
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+}
+
+.result-human{
+  border-radius: 20px;
+  background-color: green;
+  color: white;
+  padding: 10px;
+}
+
+input:focus{
+  outline: none;
+}
+
+.check-button{
+  color: #ffffff;
+  background: #1da1f2;
+  border:2px solid #1DA1F2; 
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.check-button:hover, .check-button:active{
+  background: #1886ca;
+  border:2px solid #1886ca;
 }
 
 .form-control{
 	padding-right: 8em;
 	margin-right: .1em;
 }
-#loader-div, #resultId{
-   padding-left: 2em;
+.loader{
+  padding-top: 12px;
+  padding-left: 10px;
+  text-align: center;
 }
 
+#resultId{
+  padding-top: 5px;
+  padding-left: 5px;
+  text-align: center;
+}
 
 /**Tweet Display **/
 #tweetDisplay{

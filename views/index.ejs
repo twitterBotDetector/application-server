@@ -40,27 +40,21 @@
 
 	<div id="backcolor">
 
-		<h2 class="preference-search">
-			<strong>Is Thy User a Bot ?</strong>
-		</h2>
+		<h3 class="preference-search">Check if a Twitter account is a bot or not</h3>
 		<img src="think.svg" id="think" class="img-fluid">
 
-		<section class="row" id="search-bot">
-			<!--Detection of Bots Using User_Id -->
-			<div class="row-fluid">
-				<div class="form-group mx-sm-3 mb-2">
-					<div class="input-group">
-						<input type="text" class="form-control" name="userName" placeholder="Enter Twitter handle" id="userid-search">
-						<button class=" input-group-btn btn btn-info" id="searchB">
-							<i class="fa fa-search" aris-hidden="true" id="searchBi"></i>Check Out</button>
-						<div id="loader-div" class="hidden">
-							<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
-						</div>
-						<span id="resultId"></span>
-					</div>
+		<div class="user-search-container">
+			<div class="user-search-input">
+				<!--Detection of Bots Using Screen Name -->
+				<input type="text" name="userName" placeholder="@ScreenName" id="userid-search">
+				<button class="btn btn-info check-button" id="searchB">
+					<i class="fa fa-search" id="searchBi"></i>Check</button>
+				<div class="loader hidden">
+					<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
 				</div>
 			</div>
-		</section>
+		</div>
+		<div id="resultId"></div>
 	</div>
 	<!--Display User Tweets-->
 	<div class="row hidden" id="tweetDisplay">
