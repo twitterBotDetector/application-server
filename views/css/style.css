@@ -214,6 +214,7 @@ footer{
   height: 100px;
   background-color: #212121;
   color: white;
+  text-align: center;
 }
 
 #github-logo{
@@ -222,8 +223,4 @@ footer{
   display: block;
   margin: 0 auto;
   padding: 15px;
-}
-
-#view-on-github{
-  text-align: center;
 }
