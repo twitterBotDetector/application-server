@@ -208,3 +208,22 @@ hr{ margin: 0px; }
   height: auto !important;
   float: right;
 }
+
+footer{
+  width: 100%;
+  height: 100px;
+  background-color: #212121;
+  color: white;
+}
+
+#github-logo{
+  width: 5em; 
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+#view-on-github{
+  text-align: center;
+}
