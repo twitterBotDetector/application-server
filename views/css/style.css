@@ -34,20 +34,20 @@
 }
 
 @media only screen and (max-width: 600px){
-#bot-pic{ max-width: 80%; height: auto !important;
-	        float: right; }
+#bot-pic{ max-width: 80%; height: 110px !important;
+	        margin: 0 auto; }
 }
 @media only screen and (min-width: 600px){
 #bot-pic{ max-width: 70%; height: auto !important;
-          float: right; }
+          float: right; padding-top: 35px; }
 }
 @media only screen and (min-width: 768px){
 #bot-pic{ max-width: 50%; height: auto !important;
-          float: right; }
+          float: right; padding-top: 35px;}
 }
 @media only screen and (min-width: 992px){
 #bot-pic{ max-width: 40%; height: auto !important;
-          float: right; }
+          float: right; padding-top: 35px;}
 }
 
 .jumbotron .btn-group {
