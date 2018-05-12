@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#fff",
-    "theme_color": "#fff",
+    "theme_color": "#1DA1F2",
     "description": "Detect Bots in your Twitter Timeline",
     "icons": [{
       "src": "icons/tweebotd_icon48.png",
