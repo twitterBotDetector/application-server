@@ -6,6 +6,7 @@ var helmet = require('helmet');
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'none'"],
+    manifestSrc: ["'self'"],
     connectSrc: ["'self'"],
     styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com', 'fonts.googleapis.com'],
     fontSrc: ["'self'", 'fonts.gstatic.com', 'maxcdn.bootstrapcdn.com'],
