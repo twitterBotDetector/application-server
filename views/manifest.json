@@ -1,7 +1,7 @@
 {
     "name": "TweeBotD",
     "short_name": "TweeBotD",
-    "start_url": ".",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#fff",
     "theme_color": "#1DA1F2",
