@@ -76,11 +76,10 @@
 							}
 
 							showTweets(getTweetDetails(data[i], userClass, color));
+							$('#tweets_loading').addClass("hidden");
 						} //end success
 					});
 				}
-
-				$('#tweets_loading').addClass("hidden");
 			} //endSuccess
 		});
 	});
