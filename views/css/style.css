@@ -167,6 +167,10 @@ input:focus{
   text-align: center;
 }
 
+#tweets_loading{
+  width: 100%;
+}
+
 /**Tweet Display **/
 #tweetDisplay{
 margin: 0px;
