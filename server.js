@@ -32,42 +32,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var passport = require('passport'),
   TwitterStrategy = require('passport-twitter').Strategy;
 
-var fs = require('fs');
-/*
- * First, check for config.js file for environment variables
- * If that fails, then check /run/secrets/ (assuming docker environment)
- * Else, fall back to process.env
- */
-try {
-  var config = require("./config");
-} catch (e) {
-  try {
-    var config = {
-      "node_environment": fs.readFileSync('/run/secrets/node_environment', 'utf8').trim(),
-      "mongodb_url": fs.readFileSync('/run/secrets/mongodb_url', 'utf8').trim(),
-      "session_secret": fs.readFileSync('/run/secrets/session_secret', 'utf8').trim()
-    } 
-  }
-  catch(err) {
-    console.log(err);
-    var config = {
-      "node_environment": process.env.node_environment,
-      "mongodb_url": process.env.mongodb_url,
-      "session_secret": process.env.session_secret
-    } 
-  }
-}
-
 var session = require('express-session');
 var mongoose = require('mongoose');
 var MongoStore = require('connect-mongo')(session);
 
-mongoose.connect(config.mongodb_url);
+mongoose.connect(process.env.MONGODB_URL);
 
-if (config.node_environment === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(session({
     proxy: true,
-    secret: config.session_secret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: true },
@@ -80,7 +54,7 @@ if (config.node_environment === 'production') {
 else {
   app.use(session({
     proxy: true,
-    secret: config.session_secret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({
@@ -117,7 +91,7 @@ logout.logoutUser(app);
 
 //redirect http traffic to https if app is in production environment
 app.use(function(req, res, next) {
-  if(config.node_environment === 'production' && req.headers['x-forwarded-proto']!='https') {
+  if(process.env.NODE_ENV === 'production' && req.headers['x-forwarded-proto']!='https') {
     return res.redirect(['https://', req.get('Host'), req.url].join(''));
   }
   next();

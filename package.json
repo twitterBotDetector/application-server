@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "application-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/twitterBotDetector/UI.git"
   },
   "author": "Mufaddal, Drishit",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/twitterBotDetector/UI/issues"
   },
@@ -21,6 +21,7 @@
     "body-parser": "^1.18.2",
     "compression": "^1.7.2",
     "connect-mongo": "^2.0.1",
+    "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.3",
     "express-session": "^1.15.6",

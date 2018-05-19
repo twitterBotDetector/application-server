@@ -2,25 +2,6 @@ var passport = require('passport'),
   TwitterStrategy = require('passport-twitter').Strategy;
 var User = require('./models/user');
 
-var fs = require('fs');
-try {
-  var config = require("./config");
-} catch (e) {
-  try {
-    var config = {
-      "consumer_key": fs.readFileSync('/run/secrets/consumer_key', 'utf8').trim(),
-      "consumer_secret": fs.readFileSync('/run/secrets/consumer_secret', 'utf8').trim(),
-      "callback_url": fs.readFileSync('/run/secrets/callback_url', 'utf8').trim()
-    }
-  } catch (err) {
-    var config = {
-      "consumer_key": process.env.consumer_key,
-      "consumer_secret": process.env.consumer_secret,
-      "callback_url": process.env.callback_url
-    }
-  }
-}
-
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
@@ -32,9 +13,9 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use(new TwitterStrategy({
-    consumerKey: config.consumer_key,
-    consumerSecret: config.consumer_secret,
-    callbackURL: config.callback_url
+    consumerKey: process.env.CONSUMER_KEY,
+    consumerSecret: process.env.CONSUMER_SECRET,
+    callbackURL: process.env.CALLBACK_URL
   },
   function (token, tokenSecret, profile, done) {
     User.findOne({

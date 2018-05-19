@@ -3,50 +3,18 @@ var redis = require('redis');
 
 var Twit = require('twit');
 
-var fs = require('fs');
-try {
-    var config = require("./config");
-}
-catch (e) {
-    try {
-        var config = {
-          "consumer_key": fs.readFileSync('/run/secrets/consumer_key', 'utf8').trim(),
-          "consumer_secret": fs.readFileSync('/run/secrets/consumer_secret', 'utf8').trim(),
-          "access_token": fs.readFileSync('/run/secrets/access_token', 'utf8').trim(),
-          "access_token_secret": fs.readFileSync('/run/secrets/access_token_secret', 'utf8').trim(),
-          "redis_hostname": fs.readFileSync('/run/secrets/redis_hostname', 'utf8').trim(),
-          "redis_port": fs.readFileSync('/run/secrets/redis_port', 'utf8').trim(),
-          "lambda_url": fs.readFileSync('/run/secrets/lambda_url', 'utf8').trim(),
-          "node_environment": fs.readFileSync('/run/secrets/node_environment', 'utf8').trim()
-        } 
-    }
-    catch(err) {
-        var config = {
-            "consumer_key":         process.env.consumer_key,
-            "consumer_secret":      process.env.consumer_secret,
-            "access_token":         process.env.access_token,
-            "access_token_secret":  process.env.access_token_secret,
-            "redis_hostname":       process.env.redis_hostname,
-            "redis_port":           process.env.redis_port,
-            "redis_password":       process.env.redis_password,
-            "lambda_url":           process.env.lambda_url,
-            "node_environment":     process.env.node_environment
-        }
-    }     
-}
-
 /**************************************************************************
  * If environment is production, then connect to the hosted redis server
  * Else, connect to the local redis client for testing
 ***************************************************************************/
-if (config.node_environment === 'production') {
-    var client = redis.createClient(config.redis_port, config.redis_hostname, {no_ready_check: true});
-    client.auth(config.redis_password, function (err) {
+if (process.env.NODE_ENV === 'production') {
+    var client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOSTNAME, {no_ready_check: true});
+    client.auth(process.env.REDIS_PASSWORD, function (err) {
         if (err) throw err;
     });
 } 
 else {
-    client = redis.createClient(config.redis_port, config.redis_hostname);
+    client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOSTNAME);
     client.on("error", function (err) {
         console.log(`Error: ${err}`);
     });
@@ -81,18 +49,18 @@ exports.extractUserData = function(app, bodyParser) {
                     
                     if (request.user) {
                         var T = new Twit({
-                          consumer_key: config.consumer_key,
-                          consumer_secret: config.consumer_secret,
+                          consumer_key: process.env.CONSUMER_KEY,
+                          consumer_secret: process.env.CONSUMER_SECRET,
                           access_token: request.user.token,
                           access_token_secret: request.user.tokenSecret,
                         });
                     }
                     else {
                         var T = new Twit({
-                            consumer_key:         config.consumer_key,
-                            consumer_secret:      config.consumer_secret,
-                            access_token:         config.access_token,
-                            access_token_secret:  config.access_token_secret
+                            consumer_key:         process.env.CONSUMER_KEY,
+                            consumer_secret:      process.env.CONSUMER_SECRET,
+                            access_token:         process.env.ACCESS_TOKEN,
+                            access_token_secret:  process.env.ACCESS_TOKEN_SECRET
                         });
                     }
 
@@ -221,7 +189,7 @@ function extractEntropy(data, numOfTweets) {
 //Send a request to lambda function with the user_details to classify the user as bot or human
 function classifyUser(response, userId, userData) {
     requestClassification.post(
-        config.lambda_url,
+        process.env.LAMBDA_URL,
         { json: userData },
         function (error, resp, body) {
             if (resp.body == 1 || resp.body == 0) {

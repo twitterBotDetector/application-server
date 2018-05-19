@@ -1,39 +1,16 @@
 var requestClassification = require('request');
 var Twit = require('twit');
 
-var fs = require('fs');
-try {
-    var config = require("./config");
-} catch (e) {
-    try {
-        var config = {
-            "consumer_key": fs.readFileSync('/run/secrets/consumer_key', 'utf8').trim(),
-            "consumer_secret": fs.readFileSync('/run/secrets/consumer_secret', 'utf8').trim(),
-            "access_token": fs.readFileSync('/run/secrets/access_token', 'utf8').trim(),
-            "access_token_secret": fs.readFileSync('/run/secrets/access_token_secret', 'utf8').trim(),
-            "node_environment": fs.readFileSyync('/run/secrets/node_environment', 'utf8').trim()
-        }
-    } catch (err) {
-        var config = {
-            "consumer_key": process.env.consumer_key,
-            "consumer_secret": process.env.consumer_secret,
-            "access_token": process.env.access_token,
-            "access_token_secret": process.env.access_token_secret,
-            "node_environment": process.env.node_environment
-        }
-    }
-}
-
 exports.classifyUserName = function (app) {
     app.get('/api/classifyUserName', function (request, response) {
         if (request.query.userName != null) {
             userName = request.query.userName;
 
             var T = new Twit({
-                consumer_key: config.consumer_key,
-                consumer_secret: config.consumer_secret,
-                access_token: config.access_token,
-                access_token_secret: config.access_token_secret
+                consumer_key: process.env.CONSUMER_KEY,
+                consumer_secret: process.env.CONSUMER_SECRET,
+                access_token: process.env.ACCESS_TOKEN,
+                access_token_secret: process.env.ACCESS_TOKEN_SECRET
             });
 
             T.get('/users/lookup', {screen_name: userName}, function (err, data, resp) {
@@ -42,7 +19,7 @@ exports.classifyUserName = function (app) {
                     response.sendStatus(404);
                 } else {
                     let host_url = '';
-                    if (config.node_environment === 'production') {
+                    if (process.env.NODE_ENV === 'production') {
                         host_url = 'https://tweebotd.herokuapp.com/api/extractUserData';
                     } else {
                         host_url = 'http://127.0.0.1:8085/api/extractUserData';
