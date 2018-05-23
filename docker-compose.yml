@@ -1,4 +1,4 @@
-version: '3.1'
+version: '2'
 
 services:
   mongo:
@@ -11,46 +11,32 @@ services:
     ports:
       - "6379"
 
+  ml-classification-server:
+    image: drish96/ml-classification-server
+    ports:
+      - "5000"
+
   ui:
     image: drish96/tweebotd
+    ports:
+      - "8085:8085"
+    links:
+      - mongo
+      - redis
+      - ml-classification-server
     depends_on:
       - mongo
       - redis
-    secrets:
-      - consumer_key
-      - consumer_secret
-      - access_token
-      - access_token_secret
-      - session_secret
-      - mongodb_url
-      - redis_port
-      - redis_hostname
-      - callback_url
-      - lambda_url
-      - node_environment
-    ports:
-      - "8085:8085"
-
-secrets:
-  consumer_key:
-    external: true
-  consumer_secret:
-    external: true
-  access_token:
-    external: true
-  access_token_secret:
-    external: true
-  session_secret:
-    external: true
-  mongodb_url:
-    external: true
-  redis_port:
-    external: true
-  redis_hostname:
-    external: true
-  callback_url:
-    external: true
-  lambda_url:
-    external: true
-  node_environment:
-    external: true
+      - ml-classification-server
+    environment:
+      - "CONSUMER_KEY=${CONSUMER_KEY}"
+      - "CONSUMER_SECRET=${CONSUMER_SECRET}"
+      - "ACCESS_TOKEN=${ACCESS_TOKEN}"
+      - "ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}"
+      - "SESSION_SECRET=${SESSION_SECRET}"
+      - "MONGODB_URL=${MONGODB_URL}"
+      - "REDIS_PORT=${REDIS_PORT}"
+      - "REDIS_HOSTNAME=${REDIS_HOSTNAME}"
+      - "CALLBACK_URL=${CALLBACK_URL}"
+      - "LAMBDA_URL=${LAMBDA_URL}"
+      - "NODE_ENV=${NODE_ENV}"
