@@ -14,7 +14,7 @@
 
 					function getTweetDetails(data, userClass, color) {
 						return `<div class="col-md-4 col-12" id="card-space">
-                   <div class="card border-light">
+                   <div class="scale-in-top card border-light">
                       <div class="card-header">
                       <img src=${data.user.profile_image_url_https} id="profile-image"></img>
       	                <h5 class="alert-link" id="name-person">${data.user.name}</h5>
